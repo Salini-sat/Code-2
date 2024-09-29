@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void traversal(int arr[], int n){
+    for(int i=0;i<n;i++){
+        printf("%d\n",arr[i]);
+    }
+}
+
+int insert(int pos, int arr[]){
+    for(int i=0;i<=pos;i++){
+        if(i==pos){
+            arr[i]=arr[pos];
+        }
+    }
+    for(int i=pos;i<n+1;i++){
+        arr[i]=arr[i+1];
+    }
+}
+
+int delete(int arr, int pos,int n){
+    for(int i=0;i<pos;i++){
+        if(i==pos){
+            arr[i-1]=arr[i+1];
+        }
+    }
+    for(int i=pos;i<n;i++){
+        arr[i]=arr[i-1];
+    }
+}
+
+
+
+int linearsearch(int arr[],int find,int n){
+for(int i=0;i<n;i++){
+    if(arr[i]==find){
+        return i;
+    }
+}
+}
+int main(){
+    int arr[100];
+    int n;
+    scanf("%d\n",&n);
+    for(int i=0;i<n;i++){
+        scanf("%d",&arr[i]);
+    }
+
+    traversal(arr,n);
+    
+
+}

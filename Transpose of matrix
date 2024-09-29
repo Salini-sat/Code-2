@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+#define MAX 100
+
+void transposeSparseMatrix(int sparseMatrix[][3], int transposeMatrix[][3]) {
+    int i, j, k = 1;
+
+    // Copy the number of rows, columns, and number of non-zero elements
+    transposeMatrix[0][0] = sparseMatrix[0][1];
+    transposeMatrix[0][1] = sparseMatrix[0][0];
+    transposeMatrix[0][2] = sparseMatrix[0][2];
+
+    // Transpose the matrix
+    for (i = 0; i < sparseMatrix[0][1]; i++) {
+        for (j = 1; j <= sparseMatrix[0][2]; j++) {
+            if (sparseMatrix[j][1] == i) {
+                transposeMatrix[k][0] = sparseMatrix[j][1];
+                transposeMatrix[k][1] = sparseMatrix[j][0];
+                transposeMatrix[k][2] = sparseMatrix[j][2];
+                k++;
+            }
+        }
+    }
+}
+
+int main() {
+    int sparseMatrix[MAX][3], transposeMatrix[MAX][3];
+    int rows, cols, numNonZero, i;
+
+    // Input the sparse matrix
+    printf("Enter the number of rows, columns, and number of non-zero elements: ");
+    scanf("%d %d %d", &rows, &cols, &numNonZero);
+
+    sparseMatrix[0][0] = rows;
+    sparseMatrix[0][1] = cols;
+    sparseMatrix[0][2] = numNonZero;
+
+    printf("Enter the 3-tuple representation of the sparse matrix:\n");
+    for (i = 1; i <= numNonZero; i++) {
+        printf("Enter row, column, and value for element %d: ", i);
+        scanf("%d %d %d", &sparseMatrix[i][0], &sparseMatrix[i][1], &sparseMatrix[i][2]);
+    }
+
+    // Transpose the sparse matrix
+    transposeSparseMatrix(sparseMatrix, transposeMatrix);
+
+    // Print the transposed matrix
+    printf("\nTransposed sparse matrix in 3-tuple format:\n");
+    for (i = 0; i <= numNonZero; i++) {
+        printf("%d %d %d\n", transposeMatrix[i][0], transposeMatrix[i][1], transposeMatrix[i][2]);
+    }
+
+    return 0;
+}
